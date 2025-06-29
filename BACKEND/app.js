@@ -2,7 +2,6 @@ const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
 require('dotenv').config()
-
 const app = express()
 const port = 3000
 
@@ -38,3 +37,7 @@ mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser: true, useUnifiedTop
 app.get('/', (req, res) => {
   res.send('🚀 API is working!');
 });
+app.listen(port, () => {
+  console.log(`Server running at http://localhost:${port}`);
+});
+
