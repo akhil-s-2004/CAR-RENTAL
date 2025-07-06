@@ -7,5 +7,6 @@ router.post('/login', accountController.login);
 router.get('/me', authenticateJWT, accountController.getCurrentUser);
 router.get('/:id', authenticateJWT, accountController.getAccount);
 router.put('/:id', authenticateJWT, accountController.updateAccount);
+router.post('/logout', authenticateJWT, accountController.logout);
 
 module.exports = router;

@@ -23,7 +23,10 @@ exports.login = async (req, res) => {
   const account = await Account.findOne({ email, password_hash: password });
   if (account) {
     const token = generateToken(account);
-    res.json({ account, token });
+    //res.json({ account, token });
+    res.json({ role: account.role, message: "Login successful" });
+    console.log("JWT Token:", token);
+
   }
   else res.status(401).json({ error: 'Invalid credentials' });
 };
@@ -39,4 +42,7 @@ exports.getCurrentUser = async (req, res) => {
 exports.updateAccount = async (req, res) => {
   const updatedAccount = await Account.findByIdAndUpdate(req.params.id, req.body, { new: true });
   res.json(updatedAccount);
+};
+exports.logout = (req, res) => {
+  res.json({ message: 'Logout successful.' });
 };
